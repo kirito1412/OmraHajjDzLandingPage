@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* ── لوحة الألوان: ثلاثة ألوان فقط ─────────────────────────────
+   brand  : الأخضر (اللون الأساسي)
+   sand   : الخلفية الفاتحة
+   ink    : لون النص الداكن
+   ------------------------------------------------------------- */
+@theme {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #0b6e4f;
+  --color-brand-dark: #07543c;
+  --color-brand-light: #e6f2ed;
+
+  --color-sand: #f6f4ef;
+  --color-ink: #1c1c1c;
+
+  --animate-shake: shake 1.4s ease-in-out infinite;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    10% {
+      transform: translateX(-6px) rotate(-1deg);
+    }
+    20% {
+      transform: translateX(6px) rotate(1deg);
+    }
+    30% {
+      transform: translateX(-5px) rotate(-1deg);
+    }
+    40% {
+      transform: translateX(5px) rotate(1deg);
+    }
+    50% {
+      transform: translateX(-3px) rotate(0deg);
+    }
+    60% {
+      transform: translateX(3px) rotate(0deg);
+    }
+    70% {
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-sand);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* احترام تفضيل تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shake {
+    animation: none;
+  }
+}
