@@ -1,16 +1,14 @@
 import { useParams } from 'react-router-dom'
 import Hero from '../components/Hero'
-import OfferDateCard from '../components/OfferDateCard'
+import DepartureCard from '../components/DepartureCard'
 import NotFound from './NotFound'
-import { getAirport, sortedOffers } from '../data'
+import { getAirport, sortedDates } from '../data'
 
 export default function AirportPage() {
   const { airportId } = useParams()
   const airport = getAirport(airportId)
 
   if (!airport) return <NotFound />
-
-  const offers = sortedOffers(airport)
 
   return (
     <>
@@ -28,8 +26,8 @@ export default function AirportPage() {
         </header>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {offers.map((offer) => (
-            <OfferDateCard key={offer.id} airportId={airport.id} offer={offer} />
+          {sortedDates(airport).map((departure) => (
+            <DepartureCard key={departure.id} airport={airport} departure={departure} />
           ))}
         </div>
       </section>

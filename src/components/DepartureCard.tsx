@@ -1,32 +1,42 @@
 import { Link } from 'react-router-dom'
-import type { Offer } from '../types'
+import type { Airport, Departure } from '../types'
 
 /** بطاقة تاريخ الإقلاع داخل صفحة المطار */
-export default function OfferDateCard({ airportId, offer }: { airportId: string; offer: Offer }) {
+export default function DepartureCard({
+  airport,
+  departure,
+}: {
+  airport: Airport
+  departure: Departure
+}) {
   return (
     <Link
-      to={`/airport/${airportId}/offer/${offer.id}`}
+      to={`/airport/${airport.id}/offer/${departure.id}`}
       className="group flex h-full flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="rounded-xl bg-brand-light px-4 py-3 text-center">
-          <p className="text-lg font-extrabold leading-none text-brand">{offer.dateLabel}</p>
+        <div className="rounded-xl bg-brand-light px-4 py-3">
+          <p className="text-lg font-extrabold leading-none text-brand">{departure.label}</p>
           <p className="mt-1.5 text-xs font-semibold text-brand/70">تاريخ الإقلاع</p>
         </div>
-        <span className="rounded-full bg-sand px-3 py-1 text-xs font-bold text-ink/70">{offer.seats}</span>
+        {departure.seats && (
+          <span className="rounded-full bg-sand px-3 py-1 text-xs font-bold text-ink/70">
+            {departure.seats}
+          </span>
+        )}
       </div>
 
-      <h3 className="mt-5 text-lg font-extrabold text-ink">{offer.name}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{offer.summary}</p>
+      <h3 className="mt-5 text-lg font-extrabold text-ink">{departure.name}</h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/70">{airport.summary}</p>
 
       <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-black/5 pt-4 text-sm">
         <div>
           <dt className="text-xs text-ink/50">المدة</dt>
-          <dd className="font-bold text-ink">{offer.duration}</dd>
+          <dd className="font-bold text-ink">{airport.duration}</dd>
         </div>
         <div>
           <dt className="text-xs text-ink/50">السعر</dt>
-          <dd className="font-bold text-brand">{offer.price}</dd>
+          <dd className="font-bold text-brand">{airport.price}</dd>
         </div>
       </dl>
 

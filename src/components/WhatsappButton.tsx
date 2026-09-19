@@ -1,9 +1,9 @@
-import { whatsappLink } from '../data'
+import { site, whatsappLink } from '../data'
 
 /** زر الحجز الكبير: أخضر، عريض، في الوسط، مع اهتزاز مستمر */
 export default function WhatsappButton({ context }: { context?: string }) {
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col items-center">
       <a
         href={whatsappLink(context)}
         target="_blank"
@@ -15,6 +15,11 @@ export default function WhatsappButton({ context }: { context?: string }) {
         </svg>
         احجز الآن
       </a>
+
+      <p className="mt-4 text-center text-sm text-ink/60">
+        للحجز والاستفسار عبر واتساب:{' '}
+        <bdi className="font-bold text-ink/80">{site.whatsappDisplay}</bdi>
+      </p>
     </div>
   )
 }

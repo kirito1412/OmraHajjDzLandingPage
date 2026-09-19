@@ -5,7 +5,7 @@ import type { Airport, Site } from '../types'
 /**
  * كل بيانات الموقع موجودة في الملفين:
  *   src/data/site.json      → معلومات عامة، الفوتر، رقم الواتساب
- *   src/data/airports.json  → المطارات والعروض والتواريخ
+ *   src/data/airports.json  → المطارات، تفاصيل العرض، وتواريخ الإقلاع
  * يكفي تعديل الملفين لتحديث الموقع بالكامل.
  */
 export const site = siteJson as Site
@@ -15,15 +15,15 @@ export function getAirport(airportId?: string): Airport | undefined {
   return airports.find((airport) => airport.id === airportId)
 }
 
-export function getOffer(airportId?: string, offerId?: string) {
+export function getDeparture(airportId?: string, dateId?: string) {
   const airport = getAirport(airportId)
-  const offer = airport?.offers.find((item) => item.id === offerId)
-  return { airport, offer }
+  const departure = airport?.dates.find((item) => item.id === dateId)
+  return { airport, departure }
 }
 
-/** ترتيب العروض من الأقرب تاريخا إلى الأبعد */
-export function sortedOffers(airport: Airport) {
-  return [...airport.offers].sort((a, b) => a.date.localeCompare(b.date))
+/** ترتيب تواريخ الإقلاع من الأقرب إلى الأبعد */
+export function sortedDates(airport: Airport) {
+  return [...airport.dates].sort((a, b) => a.date.localeCompare(b.date))
 }
 
 /** رابط واتساب جاهز مع رسالة مكتوبة مسبقا */

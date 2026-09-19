@@ -1,25 +1,30 @@
+export interface RoomPrice {
+  room: string
+  price: string
+}
+
 export interface OfferSection {
   title: string
   /** فقرات نصية عادية */
   paragraphs?: string[]
   /** قائمة نقاط */
   list?: string[]
+  /** جدول أسعار الغرف */
+  prices?: RoomPrice[]
 }
 
-export interface Offer {
+/** تاريخ إقلاع واحد داخل مطار */
+export interface Departure {
+  /** يظهر في الرابط — حروف لاتينية بدون فراغات */
   id: string
-  name: string
-  /** تاريخ بصيغة YYYY-MM-DD يستعمل للترتيب فقط */
+  /** YYYY-MM-DD — يستعمل للترتيب فقط */
   date: string
   /** التاريخ كما يظهر للزائر */
-  dateLabel: string
-  duration: string
-  price: string
-  seats: string
-  hotel: string
-  image: string
-  summary: string
-  sections: OfferSection[]
+  label: string
+  /** اسم العرض في مسار التصفح وفي عنوان الصفحة */
+  name: string
+  /** الأماكن المتبقية — اتركه فارغا إذا لم ترد إظهاره */
+  seats?: string
 }
 
 export interface Airport {
@@ -29,7 +34,14 @@ export interface Airport {
   shortText: string
   image: string
   intro: string
-  offers: Offer[]
+  /** معلومات مشتركة بين كل تواريخ هذا المطار */
+  duration: string
+  price: string
+  stay: string
+  summary: string
+  /** تفاصيل العرض المطوّلة — تظهر في صفحة العرض فقط */
+  sections: OfferSection[]
+  dates: Departure[]
 }
 
 export interface FooterLink {
@@ -48,7 +60,10 @@ export interface Site {
   heroTitle: string
   heroSubtitle: string
   heroImage: string
+  /** رقم الواتساب بالصيغة الدولية بدون + وبدون فراغات */
   whatsapp: string
+  /** الرقم كما يظهر للزائر */
+  whatsappDisplay: string
   whatsappMessage: string
   facebook: string
   offersSectionTitle: string

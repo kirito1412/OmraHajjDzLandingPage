@@ -8,7 +8,7 @@ export default function AirportCard({ airport }: { airport: Airport }) {
       to={`/airport/${airport.id}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand"
     >
-      <div className="relative aspect-4/5 overflow-hidden">
+      <div className="relative aspect-4/5 overflow-hidden bg-ink">
         <img
           src={airport.image}
           alt={airport.name}
@@ -16,7 +16,7 @@ export default function AirportCard({ airport }: { airport: Airport }) {
           className="size-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute top-4 right-4 rounded-full bg-brand px-3 py-1 text-xs font-bold text-white">
-          {airport.offers.length} عروض متاحة
+          {airport.dates.length} تواريخ متاحة
         </span>
       </div>
 
